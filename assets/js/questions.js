@@ -30,9 +30,8 @@ var questions = [
         title: 'Which event occurs when the user clicks on an HTML element?',
         choices: ['onmouseover', 'onchange', 'onclick','onmouseclick'],
         answer: 'onclick',
-    },
-
-
-
+    }
 
 ]
+
+
