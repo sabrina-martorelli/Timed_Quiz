@@ -1,5 +1,4 @@
 //Array of Javascript fundamentals questions
-
 var questions = [
     {
         title: 'Question 1',
