@@ -81,7 +81,7 @@ questionTitle.innerText= currentQuestion.title
 
 function checkAnswer(event){
 
-  console.log(event);
+  console.log(event.target.value);
 
 //     //if is correct
 //         //show feedback
