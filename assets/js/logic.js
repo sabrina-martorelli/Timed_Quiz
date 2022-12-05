@@ -9,10 +9,13 @@ startButton.addEventListener('click', function(event){
 var startScreen= document.getElementById('start-screen');
 startScreen.classList.add('class', 'hide');
 
-//Calls functions to start Timer and Quiz
-startTimer();
-startQuiz();
+//Targets the questions div and removes hide attribute
+var htmlQuestion=document.getElementById('questions');
+htmlQuestion.classList.remove('hide');
 
+//Calls functions to start Timer and Quiz
+runQuiz();
+startTimer();
 });
 
 
@@ -20,16 +23,20 @@ function startTimer() {
 
 //Set initial time for timer
 var initialtime = document.getElementById('time');
-var time= 5;
+var time= 75;
    
-
 var timer= setInterval(function(){
     
     initialtime.innerText= time;
     time--;
-    if (time < 0){
-            //Timer stops when reach 0
-            clearTimeout(timer);
+    //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
+    if (time < 0)  {
+        
+        //assign time to points before clear    
+        clearTimeout(timer);
+            
+
+
        }
         
       } , 1000);
@@ -38,54 +45,73 @@ var timer= setInterval(function(){
 
 };
 
-//Current question on screen
-var currentQuestionIndex= 0;
-var htmlQuestion=document.getElementById('questions');
-htmlQuestion.classList.remove('hide');
+
+var currentQuestionIndex=0;
+
+
+
+
+
+
+function runQuiz(){
+
 var questionTitle=document.getElementById('question-title');
 var choices = document.getElementById('choices');
-
-function startQuiz(){
-
 var currentQuestion = questions[currentQuestionIndex];
 var currentChoices = currentQuestion.choices;
 
-
-
-
-//Clears the questions
+//Clears the previous questions
 choices.innerHTML='';
 //Set the title to the current question title
 questionTitle.innerText= currentQuestion.title
 //Create the choices for the current question
- for (var i = 0; i< currentChoices.length;  i++ ) {
-   
+ for (var i = 0; i< currentChoices.length;  i++ ) { 
   var choiceText = currentChoices[i];
   //Button creation for each choice
   var button = document.createElement('button');
   button.innerText=choiceText;
   button.value=choiceText;
   choices.appendChild (button);
-
-
  }
 
+ choices.addEventListener('click',checkAnswer);
+ 
 
- function checkAnswer(event){
+}
 
-    console.log(event);
+function checkAnswer(event){
 
-    //if is correct
-        //show feedback
-        //show next question
+  console.log(event);
 
-    //if is not correct
-        //show feedback
-        //decrease timer
-        //show next question
+//     //if is correct
+//         //show feedback
+//         //show next question
+
+//     //if is not correct
+//         //show feedback
+//         //decrease timer
+//         //show next question
     
+ currentQuestionIndex++;
+ console.log(currentQuestionIndex);
+ runQuiz();
+if (currentQuestionIndex < 5){
+    runQuiz();
     }
+else {
 
-choices.addEventListener('click',checkAnswer )
 
-};
+
+}
+  }
+
+// choices.addEventListener('click',checkAnswer )
+
+// };
+
+
+//  for (var i =0 ; i < 4; i++){
+
+//    currentQuestionIndex++;
+//   startQuiz();
+//  }
