@@ -94,13 +94,23 @@ function checkAnswer(event){
     
  currentQuestionIndex++;
  console.log(currentQuestionIndex);
- runQuiz();
+
 if (currentQuestionIndex < 5){
     runQuiz();
     }
 else {
 
+//Targets the questions div and adds hide attribute
+var questionDiv=document.getElementById('questions');
+questionDiv.classList.add('hide');
 
+//Targets the end-screen div and removes hide attribute
+var endScreenDiv=document.getElementById('end-screen');
+endScreenDiv.classList.remove('hide');
+
+//Assign actual time to Score
+var finalScoreDiv=document.getElementById('final-score');
+finalScoreDiv.innerText=time;
 
 }
   }
