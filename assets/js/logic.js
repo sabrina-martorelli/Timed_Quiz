@@ -79,12 +79,26 @@ questionTitle.innerText= currentQuestion.title
 
 }
 
+
+function showFeedback(answerText){
+    var feedbackDiv=document.getElementById('feedback');
+    feedbackDiv.classList.remove('hide');
+    feedbackDiv.innerText= answerText;
+    //Delay missing
+    feedbackDiv.classList.add('hide');
+
+}
+
+
 function checkAnswer(event){
 
 var currentQuestion = questions[currentQuestionIndex]; 
     if (event.target.value == currentQuestion.answer){
 
-        console.log('correct');
+    console.log('correct');
+    //Targets the feedback div and removes hide attribute
+    showFeedback('Correct------------');
+
 
    }
    else{
