@@ -81,9 +81,16 @@ questionTitle.innerText= currentQuestion.title
 
 function checkAnswer(event){
 
-  console.log(event.target.value);
+var currentQuestion = questions[currentQuestionIndex]; 
+    if (event.target.value == currentQuestion.answer){
 
-//     //if is correct
+        console.log('correct');
+
+   }
+   else{
+    console.log('Incorrect');
+
+   };
 //         //show feedback
 //         //show next question
 
