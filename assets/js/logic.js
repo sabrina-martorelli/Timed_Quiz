@@ -83,9 +83,9 @@ questionTitle.innerText= currentQuestion.title
 function showFeedback(answerText){
     var feedbackDiv=document.getElementById('feedback');
     feedbackDiv.classList.remove('hide');
-    feedbackDiv.innerText= answerText;
-    //Delay missing
-    feedbackDiv.classList.add('hide');
+    feedbackDiv.innerText= answerText;   
+
+    setTimeout(function(){ feedbackDiv.classList.add('hide'); }, 1000);
 
 }
 
@@ -102,16 +102,11 @@ var currentQuestion = questions[currentQuestionIndex];
 
    }
    else{
+   
     console.log('Incorrect');
+    showFeedback('Incorrect------------');
 
    };
-//         //show feedback
-//         //show next question
-
-//     //if is not correct
-//         //show feedback
-//         //decrease timer
-//         //show next question
     
  currentQuestionIndex++;
  console.log(currentQuestionIndex);
