@@ -16,8 +16,8 @@ startButton.addEventListener('click', function (event) {
     //Calls functions to start Timer and Quiz
     startTimer();
 
-    setTimeout(function () {  runQuiz(); }, 1000);
-   
+    setTimeout(function () { runQuiz(); }, 1000);
+
 
 });
 
@@ -56,35 +56,38 @@ var currentQuestionIndex = 0;
 function runQuiz() {
 
     var currentTime = document.getElementById('time');
-    
+
     console.log(currentQuestionIndex);
     console.log(currentTime.innerText);
-    if ((currentQuestionIndex < 5) || (currentTime.innerText > 0) ){
-        showQuestions();
-        console.log('inside if')
-        currentQuestionIndex++;
-    }
-
-    else{
    
 
-        //Targets the questions div and adds hide attribute
-        var questionDiv = document.getElementById('questions');
-        questionDiv.classList.add('hide');
+        if ((currentQuestionIndex < 5) && (currentTime.innerText > 0)) {
+            showQuestions();
+            console.log('inside if')
+            
+            
+        }
 
-        //Targets the end-screen div and removes hide attribute
-        var endScreenDiv = document.getElementById('end-screen');
-        endScreenDiv.classList.remove('hide');
+        else {
 
-        //Assign actual time to Score
-        var finalTime = document.getElementById('time');
-        var finalScoreDiv = document.getElementById('final-score');
-        finalScoreDiv.innerText = finalTime.innerText;
-        //needs to stop the timer here
 
+            //Targets the questions div and adds hide attribute
+            var questionDiv = document.getElementById('questions');
+            questionDiv.classList.add('hide');
+
+            //Targets the end-screen div and removes hide attribute
+            var endScreenDiv = document.getElementById('end-screen');
+            endScreenDiv.classList.remove('hide');
+
+            //Assign actual time to Score
+            var finalTime = document.getElementById('time');
+            var finalScoreDiv = document.getElementById('final-score');
+            finalScoreDiv.innerText = finalTime.innerText;
+            //needs to stop the timer here
+
+        }
     }
 
-}
 
 
 
@@ -128,6 +131,10 @@ function showFeedback(answerText) {
 function checkAnswer(event) {
 
     var currentQuestion = questions[currentQuestionIndex];
+
+   console.log('currentQuestion'+currentQuestion.answer);
+   console.log('currentQuestionIndex'+currentQuestionIndex);
+   console.log(event.target.value);
     if (event.target.value == currentQuestion.answer) {
 
         //Targets the feedback div and removes hide attribute
@@ -139,7 +146,7 @@ function checkAnswer(event) {
         showFeedback('Incorrect');
 
     };
-
-
+    currentQuestionIndex++;
+    runQuiz() ;
 }
 
