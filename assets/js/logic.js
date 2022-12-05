@@ -50,6 +50,8 @@ function startTimer() {
 
 
 
+
+
 var currentQuestionIndex = 0;
 
 
@@ -57,13 +59,12 @@ function runQuiz() {
 
     var currentTime = document.getElementById('time');
 
-    console.log(currentQuestionIndex);
-    console.log(currentTime.innerText);
+  
    
 
         if ((currentQuestionIndex < 5) && (currentTime.innerText > 0)) {
             showQuestions();
-            console.log('inside if')
+        
             
             
         }
@@ -111,7 +112,7 @@ function showQuestions() {
         button.value = choiceText;
         choices.appendChild(button);
     }
-    console.log('inside showQuestions');
+   
     choices.addEventListener('click', checkAnswer);
 
 
@@ -132,9 +133,7 @@ function checkAnswer(event) {
 
     var currentQuestion = questions[currentQuestionIndex];
 
-   console.log('currentQuestion'+currentQuestion.answer);
-   console.log('currentQuestionIndex'+currentQuestionIndex);
-   console.log(event.target.value);
+  
     if (event.target.value == currentQuestion.answer) {
 
         //Targets the feedback div and removes hide attribute
