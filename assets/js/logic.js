@@ -7,7 +7,7 @@ startButton.addEventListener('click', function(event){
 
 //Targets the start-screen div and set class attribute to hide
 var startScreen= document.getElementById('start-screen');
-startScreen.setAttribute('class', 'start hide');
+startScreen.classList.add('class', 'hide');
 
 //Calls functions to start Timer and Quiz
 startTimer();
@@ -37,5 +37,37 @@ initialtime.innerText= 75;
 
 
 
-}
+};
 
+//Current question on screen
+var currentQuestionIndex= 0;
+var htmlQuestion=document.getElementById('questions');
+htmlQuestion.classList.remove('hide');
+
+var questionTitle=document.getElementById('question-title');
+var choices = document.getElementById('choices');
+
+function startQuiz(){
+
+var currentQuestion = questions[currentQuestionIndex];
+var currentChoices = currentQuestion.choices;
+
+//Set the title to the current question title
+questionTitle.innerText= currentQuestion.title;
+
+
+
+ for (var i = 0; i< currentChoices.length;  i++ ) {
+   
+  var choiceText = currentChoices[i];
+  var button = document.createElement('button');
+  button.innerText=choiceText;
+  button.value=choiceText;
+  choices.appendChild (button);
+
+
+
+ }
+
+
+};
