@@ -20,20 +20,19 @@ function startTimer() {
 
 //Set initial time for timer
 var initialtime = document.getElementById('time');
-initialtime.innerText= 75;
+var time= 5;
    
 
-    // var timer= setInterval(function(){
+var timer= setInterval(function(){
     
-    //     document.body.innerText = time;
-    
-    //     time--;
-    //     if (time < 0){
-    
-    //         clearTimeout(timer2);
-    //     }
+    initialtime.innerText= time;
+    time--;
+    if (time < 0){
+            //Timer stops when reach 0
+            clearTimeout(timer);
+       }
         
-    //     } , 1000);
+      } , 1000);
 
 
 
@@ -43,7 +42,6 @@ initialtime.innerText= 75;
 var currentQuestionIndex= 0;
 var htmlQuestion=document.getElementById('questions');
 htmlQuestion.classList.remove('hide');
-
 var questionTitle=document.getElementById('question-title');
 var choices = document.getElementById('choices');
 
@@ -52,22 +50,42 @@ function startQuiz(){
 var currentQuestion = questions[currentQuestionIndex];
 var currentChoices = currentQuestion.choices;
 
+
+
+
+//Clears the questions
+choices.innerHTML='';
 //Set the title to the current question title
-questionTitle.innerText= currentQuestion.title;
-
-
-
+questionTitle.innerText= currentQuestion.title
+//Create the choices for the current question
  for (var i = 0; i< currentChoices.length;  i++ ) {
    
   var choiceText = currentChoices[i];
+  //Button creation for each choice
   var button = document.createElement('button');
   button.innerText=choiceText;
   button.value=choiceText;
   choices.appendChild (button);
 
 
-
  }
 
+
+ function checkAnswer(event){
+
+    console.log(event);
+
+    //if is correct
+        //show feedback
+        //show next question
+
+    //if is not correct
+        //show feedback
+        //decrease timer
+        //show next question
+    
+    }
+
+choices.addEventListener('click',checkAnswer )
 
 };
