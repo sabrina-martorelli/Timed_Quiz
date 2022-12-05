@@ -109,19 +109,11 @@ var endScreenDiv=document.getElementById('end-screen');
 endScreenDiv.classList.remove('hide');
 
 //Assign actual time to Score
+var finalTime = document.getElementById('time');
 var finalScoreDiv=document.getElementById('final-score');
-finalScoreDiv.innerText=time;
+finalScoreDiv.innerText=finalTime.innerText;
+//needs to stop the timer here
 
 }
   }
 
-// choices.addEventListener('click',checkAnswer )
-
-// };
-
-
-//  for (var i =0 ; i < 4; i++){
-
-//    currentQuestionIndex++;
-//   startQuiz();
-//  }
