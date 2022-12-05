@@ -1,4 +1,23 @@
 
+var initialtime = document.getElementById('time');
+var time = 75;
+var timer = setInterval(function () {
+
+    initialtime.innerText = time;
+    time--;
+    //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
+    if (time < 0) {
+
+        //assign time to points before clear    
+        clearTimeout(timer);
+
+
+
+    }
+
+}, 1000);
+
+
 //Targets the start button
 var startButton = document.getElementById('start');
 
@@ -14,41 +33,19 @@ startButton.addEventListener('click', function (event) {
     htmlQuestion.classList.remove('hide');
 
     //Calls functions to start Timer and Quiz
-    startTimer();
-
-    setTimeout(function () { runQuiz(); }, 1000);
+   
+ 
+    setTimeout(function () { runQuiz(); }, 100);
 
 
 });
 
 
-function startTimer() {
 
-    //Set initial time for timer
-    var initialtime = document.getElementById('time');
-    var time = 75;
-
-    var timer = setInterval(function () {
-
-        initialtime.innerText = time;
-        time--;
-        //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
-        if (time < 0) {
-
-            //assign time to points before clear    
-            clearTimeout(timer);
-
-
-
-        }
-
-    }, 1000);
-
-
-
-};
-
-
+function StopTimer(){
+   
+  clearTimeout(timer);
+}
 
 
 
@@ -85,7 +82,7 @@ function runQuiz() {
             var finalScoreDiv = document.getElementById('final-score');
             finalScoreDiv.innerText = finalTime.innerText;
             //needs to stop the timer here
-
+            StopTimer();
         }
     }
 
