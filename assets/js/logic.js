@@ -73,20 +73,22 @@ startButton.addEventListener('click', function (event) {
 });
 
 
-
+//Function to show questions of the quiz and stop it when there is no more questions or the time is over
 function runQuiz() {
 
+    //Targets the timer to check the current time
     var currentTime = document.getElementById('time');
 
+    //If there are question to show or the time is not over, shows the next question
     if ((currentQuestionIndex < questions.length) && (currentTime.innerText > 0)) {
-
         showQuestions();
     }
     else {
-        //Show Scores (end-screen) div 
-        showScores();
-        //Stop the timer when all the questions are complete
+        
+        //Stop the timer
         StopTimer();
+        //If the quiz is finish the Scores (end-screen) div is show 
+        showScores();
     }
 }
 
