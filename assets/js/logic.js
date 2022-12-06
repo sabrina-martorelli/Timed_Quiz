@@ -1,48 +1,52 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
 //Set initial time for timer
-var time = 75;
+var time = 5;
 
 //Definition of array of objects to store scores data
 var highscores = [{
-        initials:'',
-        finalScore: 0,
-        }];
+    initials: '',
+    finalScore: 0,
+}];
 
 //Definition object to store scores data
-var score ={
-        initials:'',
-        finalScore: 0,
-       }    
+var score = {
+    initials: '',
+    finalScore: 0,
+}
 
 
 //Function to start and run timer
-function startTimer(){
+function startTimer() {
     //Targets timer 
     var clock = document.getElementById('time');
     //Inits Timer
     var timer = setInterval(function () {
-        clock.innerText = time;
-        time--;
-        //If the times reach 0 the timer will stop
-        if (time < 0) {
-            //Assign time to points before clear    
-            StopTimer();
+
+        if (time > -1) {
+            clock.innerText = time;
+            time--;
         }
+        else {
+            //If the times reach 0 the timer will stop
+            StopTimer();
+           
+        }
+
     }, 1000);
 }
 
 //Function to set a penalty for a wrong answer. The timer will be decremented 20 second
-function penaltyIncorrectAnswer(){
-    time= time-20;
+function penaltyIncorrectAnswer() {
+    time = time - 20;
 }
 
 
 //Function to stops timer and show scores
-function StopTimer(){ 
+function StopTimer() {
     clearTimeout(1);
     showScores();
-  }
+}
 
 
 
@@ -63,8 +67,8 @@ startButton.addEventListener('click', function (event) {
     //Calls functions to start Timer and Quiz
     startTimer();
     //Delays the call to give time to the timer to start with correct initial value
-    setTimeout(function () {runQuiz();} , 1000);
-    
+    setTimeout(function () { runQuiz(); }, 1000);
+
 
 });
 
@@ -75,16 +79,16 @@ function runQuiz() {
     var currentTime = document.getElementById('time');
 
     if ((currentQuestionIndex < questions.length) && (currentTime.innerText > 0)) {
-       
-        showQuestions();            
-        }    
+
+        showQuestions();
+    }
     else {
         //Show Scores (end-screen) div 
-        showScores();     
+        showScores();
         //Stop the timer when all the questions are complete
         StopTimer();
-        }
     }
+}
 
 
 
@@ -108,11 +112,11 @@ function showQuestions() {
         button.value = choiceText;
         choices.appendChild(button);
     }
-   
-    choices.addEventListener('click',checkAnswer);
-    
-    
-    
+
+    choices.addEventListener('click', checkAnswer);
+
+
+
 
 
 }
@@ -140,9 +144,9 @@ function checkAnswer(event) {
 
     currentQuestionIndex++;
     //Delays the call of the function to show feedback properly
-    setTimeout(function () {runQuiz();} , 500);
-    
-   
+    setTimeout(function () { runQuiz(); }, 500);
+
+
 }
 
 
@@ -161,69 +165,69 @@ function showFeedback(answerText) {
 }
 
 //Function to show final score after quiz is finish
-function showScores(){
+function showScores() {
     //Targets the questions div and adds hide attribute to it
     var questionDiv = document.getElementById('questions');
     questionDiv.classList.add('hide');
-    
+
     //Targets the end-screen div and removes hide attribute from it
     var endScreenDiv = document.getElementById('end-screen');
     endScreenDiv.classList.remove('hide');
-    
+
     //Targets timer and final score div
     var finalTime = document.getElementById('time');
     var finalScoreDiv = document.getElementById('final-score');
-    
+
     //Assign time on timer as final score
     //If the timer is less than 0 the score will be mark as 0
-    if(finalTime.innerText<0){
-        finalScoreDiv.innerText =0;
+    if (finalTime.innerText < 0) {
+        finalScoreDiv.innerText = 0;
     }
-    else{
-         finalScoreDiv.innerText = finalTime.innerText;
+    else {
+        finalScoreDiv.innerText = finalTime.innerText;
     }
-    }
+}
 
 
 
 
 
-    //Targets the submit button
-    var submitButton = document.getElementById('submit');
+//Targets the submit button
+var submitButton = document.getElementById('submit');
 
-    //Add listener for the submit button
-    submitButton.addEventListener('click', function (event) {
+//Add listener for the submit button
+submitButton.addEventListener('click', function (event) {
 
     //Gets and store initials and final score from input
-    var initials=document.getElementById('initials').value;
-    var finalScore= document.getElementById('final-score').innerText;
-   
+    var initials = document.getElementById('initials').value;
+    var finalScore = document.getElementById('final-score').innerText;
+
     //Gets previous highscores from Local Storage if any
     var existingHighscores = JSON.parse(localStorage.getItem('highscores'));
-    
+
     //If there are highscores on local storage, adds one more
-    if(existingHighscores){
+    if (existingHighscores) {
         //Sets new object to be push
         score.initials = initials;
         score.finalScore = finalScore;
         //Adds new score to Array of highscores
-        existingHighscores.push(score);   
+        existingHighscores.push(score);
 
-         //Convert object into a JSON string and store in local storage
+        //Convert object into a JSON string and store in local storage
         localStorage.setItem('highscores', JSON.stringify(existingHighscores));
 
     }
-    else{ //If there is no highscores on local storage, adds the first one
-     //Sets new array and object
-     highscores[0].initials = initials;
-     highscores[0].finalScore = finalScore;
+    else { //If there is no highscores on local storage, adds the first one
+        //Sets new array and object
+        highscores[0].initials = initials;
+        highscores[0].finalScore = finalScore;
 
-    //Convert object into a JSON string and store in local storage
-    localStorage.setItem('highscores', JSON.stringify(highscores));
+        //Convert object into a JSON string and store in local storage
+        localStorage.setItem('highscores', JSON.stringify(highscores));
 
     }
-        
+
     //Automatically navigates to highscores.html page 
     window.location.href = "highscores.html";
 
- });
+});
