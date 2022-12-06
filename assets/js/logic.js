@@ -1,22 +1,29 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
 //Targets the timer to initialize
-var initialtime = document.getElementById('time');
 var time = 75;
-//Inits Timer
-var timer = setInterval(function () {
 
-    initialtime.innerText = time;
-    time--;
-    //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
-    if (time < 0) {
 
-        //assign time to points before clear    
-        StopTimer();
+function startTimer(){
+    var initialtime = document.getElementById('time');
+    //Inits Timer
+    var timer = setInterval(function () {
 
-    }
+        initialtime.innerText = time;
+        time--;
+        //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
+        if (time < 0) {
 
-}, 1000);
+            //assign time to points before clear    
+            StopTimer();
+
+        }
+
+    }, 1000);
+
+
+
+}
 
 
 function penaltyIncorrectAnswer(){
@@ -28,7 +35,7 @@ function penaltyIncorrectAnswer(){
 
 //Stops timer
 function StopTimer(){ 
-    clearTimeout(timer);
+    clearTimeout(1);
     showScores();
   }
 
@@ -48,9 +55,15 @@ startButton.addEventListener('click', function (event) {
     var htmlQuestion = document.getElementById('questions');
     htmlQuestion.classList.remove('hide');
 
-    //Calls functions to start Quiz
-    runQuiz();
 
+    
+    var timer= startTimer();
+
+    setTimeout(function () {runQuiz();} , 1000);
+
+    //Calls functions to start Quiz
+  
+    
 
 });
 
@@ -65,8 +78,8 @@ function runQuiz() {
 
     var currentTime = document.getElementById('time');
 
-
     if ((currentQuestionIndex < questions.length) && (currentTime.innerText > 0)) {
+       
         showQuestions();            
         }    
     else {
@@ -100,21 +113,16 @@ function showQuestions() {
         choices.appendChild(button);
     }
    
-    choices.addEventListener('click', checkAnswer);
+    choices.addEventListener('click',checkAnswer);
+    
+    
+    
 
 
 }
 
 
-function showFeedback(answerText) {
-    var feedbackDiv = document.getElementById('feedback');
-    feedbackDiv.classList.remove('hide');
-    feedbackDiv.innerText = answerText;
 
-
-    setTimeout(function () { feedbackDiv.classList.add('hide'); }, 500);
-
-}
 
 
 function checkAnswer(event) {
@@ -141,6 +149,21 @@ function checkAnswer(event) {
    
 }
 
+
+
+
+
+
+function showFeedback(answerText) {
+    var feedbackDiv = document.getElementById('feedback');
+    feedbackDiv.classList.remove('hide');
+    feedbackDiv.innerText = answerText;
+
+
+    setTimeout(function () { feedbackDiv.classList.add('hide'); }, 500);
+
+}
+
 function showScores(){
     //Targets the questions div and adds hide attribute
     var questionDiv = document.getElementById('questions');
@@ -158,28 +181,28 @@ function showScores(){
 
 
 
-////Targets the submit button
-var submitButton = document.getElementById('submit');
+ //Targets the submit button
+ var submitButton = document.getElementById('submit');
 
-//Object to store scores data
-var scores ={
-    initials:'',
-    finalScore: 0,
+ //Object to store scores data
+ var scores ={
+     initials:'',
+     finalScore: 0,
 };
 
 
-//Add listener for the submit button
+ //Add listener for the submit button
 
 submitButton.addEventListener('click', function (event) {
 
-    //Gets and store initials and final score from input
-    scores.initials = document.getElementById('initials').value;
+  //Gets and store initials and final score from input
+   scores.initials = document.getElementById('initials').value;
     scores.finalScore = document.getElementById('final-score').innerText;
    
     //convert object into a JSON string and store in local storage
     localStorage.setItem('score', JSON.stringify(scores));
-    //Navigate to Highscores page 
-
+    
+    //Navigates to highscores.html page 
     window.location.href = "highscores.html";
 
-});
+ });
