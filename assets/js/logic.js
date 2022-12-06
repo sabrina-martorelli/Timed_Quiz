@@ -2,6 +2,9 @@
 var currentQuestionIndex = 0;
 // Initial time for timer 
 var time = 75;
+// Correct and incorrect audio
+var correctAudio = new Audio ('./assets/sfx/correct.wav');
+var incorrectAudio = new Audio ('./assets/sfx/incorrect.wav');
 
 //Definition of array of objects to store scores data
 var highscores = [{
@@ -141,7 +144,8 @@ function checkAnswer(event) {
     if (event.target.value == rightQuestion) {
 
         //Call the function for correct answer
-        showFeedback('Correct');
+        showFeedback('Correct');  
+        correctAudio.play();
 
     }
     else {
@@ -149,6 +153,7 @@ function checkAnswer(event) {
         penaltyIncorrectAnswer();
         //Call the function for Incorrect answer
         showFeedback('Incorrect');
+        incorrectAudio.play();
 
     };
 
