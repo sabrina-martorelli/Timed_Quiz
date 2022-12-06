@@ -173,15 +173,13 @@ var scores ={
 submitButton.addEventListener('click', function (event) {
 
     //Gets and store initials and final score from input
-    scores.initials = document.getElementById('initials');
-    console.log (scores.initials);
-    scores.finalScore = document.getElementById('final-score');
-    console.log (scores.finalScore);
+    scores.initials = document.getElementById('initials').value;
+    scores.finalScore = document.getElementById('final-score').innerText;
+   
     //convert object into a JSON string and store in local storage
-    var s=localStorage.setItem('score', JSON.stringify(scores));
-    console.log(s);
+    localStorage.setItem('score', JSON.stringify(scores));
     //Navigate to Highscores page 
 
-    //window.location.href = "highscores.html";
+    window.location.href = "highscores.html";
 
 });
