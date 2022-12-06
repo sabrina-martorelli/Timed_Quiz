@@ -18,22 +18,19 @@ var questions = [
         answer: 'if (i == 5)',
     },
 
-    {
-    
+    {   
         title: 'What is the correct way to write a JavaScript array?',
         choices: ['var colors = 1 = ("red"), 2 = ("green"), 3 = ("blue")', 'var colors = "red", "green", "blue"', 'var colors = ["red", "green", "blue"]','var colors = (1:"red", 2:"green", 3:"blue")'],
         answer: 'var colors = ["red", "green", "blue"]',
     },
 
-    {
-    
+    { 
         title: 'How does a FOR loop start?',
         choices: ['for (i = 0; i <= 5; i++)','for i = 1 to 5', 'for (i = 0; i <= 5)','for (i <= 5; i++)'],
         answer: 'for (i = 0; i <= 5; i++)',
     },
 
     {
-       
         title: 'Which event occurs when the user clicks on an HTML element?',
         choices: ['onmouseover', 'onchange', 'onclick','onmouseclick'],
         answer: 'onclick',
