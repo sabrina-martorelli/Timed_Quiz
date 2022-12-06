@@ -21,7 +21,7 @@ var timer = setInterval(function () {
 
 function penaltyIncorrectAnswer(){
     
-    time= time-20;
+    time= time-15;
 
 }
 
@@ -31,6 +31,7 @@ function StopTimer(){
     clearTimeout(timer);
     showScores();
   }
+
 
 
 //Targets the start button
@@ -55,24 +56,6 @@ startButton.addEventListener('click', function (event) {
 
 
 
-function showScores(){
-
-//Targets the questions div and adds hide attribute
-var questionDiv = document.getElementById('questions');
-questionDiv.classList.add('hide');
-
-//Targets the end-screen div and removes hide attribute
-var endScreenDiv = document.getElementById('end-screen');
-endScreenDiv.classList.remove('hide');
-
-//Assign actual time to Score
-var finalTime = document.getElementById('time');
-var finalScoreDiv = document.getElementById('final-score');
-finalScoreDiv.innerText = finalTime.innerText;
-
-
-}
-
 
 
 
@@ -82,19 +65,17 @@ function runQuiz() {
 
     var currentTime = document.getElementById('time');
 
-        if ((currentQuestionIndex < 5) && (currentTime.innerText > 0)) {
-            showQuestions();            
-        }
-        else {
 
-            //Show Scores (end-screen) div 
-            showScores();
-            
-            //Stop the timer when all the questions are complete
-            StopTimer();
+    if ((currentQuestionIndex < questions.length) && (currentTime.innerText > 0)) {
+        showQuestions();            
+        }    
+    else {
+        //Show Scores (end-screen) div 
+        showScores();     
+        //Stop the timer when all the questions are complete
+        StopTimer();
         }
     }
-
 
 
 
@@ -130,7 +111,8 @@ function showFeedback(answerText) {
     feedbackDiv.classList.remove('hide');
     feedbackDiv.innerText = answerText;
 
-    setTimeout(function () { feedbackDiv.classList.add('hide'); }, 1000);
+
+    setTimeout(function () { feedbackDiv.classList.add('hide'); }, 500);
 
 }
 
@@ -151,7 +133,25 @@ function checkAnswer(event) {
         showFeedback('Incorrect');
 
     };
+
     currentQuestionIndex++;
-    runQuiz() ;
+    //Delays the call of the function to show feedback properly
+    setTimeout(function () {runQuiz();} , 500);
+    
+   
 }
 
+function showScores(){
+    //Targets the questions div and adds hide attribute
+    var questionDiv = document.getElementById('questions');
+    questionDiv.classList.add('hide');
+    
+    //Targets the end-screen div and removes hide attribute
+    var endScreenDiv = document.getElementById('end-screen');
+    endScreenDiv.classList.remove('hide');
+    
+    //Assign actual time to Score
+    var finalTime = document.getElementById('time');
+    var finalScoreDiv = document.getElementById('final-score');
+    finalScoreDiv.innerText = finalTime.innerText;
+    }
