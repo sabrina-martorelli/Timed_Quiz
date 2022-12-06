@@ -3,18 +3,17 @@ var currentQuestionIndex = 0;
 //Set initial time for timer
 var time = 75;
 
-    //Definition of array of objects to store scores data
-    var highscores = [{
+//Definition of array of objects to store scores data
+var highscores = [{
         initials:'',
         finalScore: 0,
         }];
 
-    //Definition object to store scores data
-       var score ={
+//Definition object to store scores data
+var score ={
         initials:'',
         finalScore: 0,
        }    
-
 
 
 //Function to start and run timer
@@ -161,28 +160,30 @@ function showFeedback(answerText) {
 
 }
 
+//Function to show final score after quiz is finish
 function showScores(){
-    //Targets the questions div and adds hide attribute
+    //Targets the questions div and adds hide attribute to it
     var questionDiv = document.getElementById('questions');
     questionDiv.classList.add('hide');
     
-    //Targets the end-screen div and removes hide attribute
+    //Targets the end-screen div and removes hide attribute from it
     var endScreenDiv = document.getElementById('end-screen');
     endScreenDiv.classList.remove('hide');
     
-    //Assign actual time to Score
+    //Targets timer and final score div
     var finalTime = document.getElementById('time');
     var finalScoreDiv = document.getElementById('final-score');
+    
+    //Assign time on timer as final score
     finalScoreDiv.innerText = finalTime.innerText;
     }
 
+
+
+
+
     //Targets the submit button
     var submitButton = document.getElementById('submit');
-
-
-
-
-
 
     //Add listener for the submit button
     submitButton.addEventListener('click', function (event) {
