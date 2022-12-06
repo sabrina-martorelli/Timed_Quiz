@@ -10,12 +10,27 @@
 
  //Loops the array of highscores
  for  (score in existingHighscores) {
-  
   //Creates an li element for each highscore
   var li = document.createElement('li');
   li.innerText=  `${existingHighscores[score].initials} - ${existingHighscores[score].finalScore}`;
+  //Appends each new li to the ol element
   ol.append(li);
 
- }
+  }
+
+
+  //
+
+//Targets the Clear Highscore button
+var clearButton = document.getElementById('clear');
+
+//Add listener for Clear Highscore button
+clearButton.addEventListener('click', function (event) {
+  
+    //Removes all child of ol element
+    ol.remove(); 
+    //Removes all highscores from local storage
+    localStorage.clear();
+});
 
 
