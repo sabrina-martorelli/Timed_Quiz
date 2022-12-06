@@ -19,10 +19,10 @@ var score ={
 //Function to start and run timer
 function startTimer(){
     //Targets timer 
-    var initialtime = document.getElementById('time');
+    var clock = document.getElementById('time');
     //Inits Timer
     var timer = setInterval(function () {
-        initialtime.innerText = time;
+        clock.innerText = time;
         time--;
         //If the times reach 0 the timer will stop
         if (time < 0) {
