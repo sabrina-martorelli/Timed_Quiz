@@ -175,7 +175,13 @@ function showScores(){
     var finalScoreDiv = document.getElementById('final-score');
     
     //Assign time on timer as final score
-    finalScoreDiv.innerText = finalTime.innerText;
+    //If the timer is less than 0 the score will be mark as 0
+    if(finalTime.innerText<0){
+        finalScoreDiv.innerText =0;
+    }
+    else{
+         finalScoreDiv.innerText = finalTime.innerText;
+    }
     }
 
 
