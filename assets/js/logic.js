@@ -1,39 +1,31 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
-//Targets the timer to initialize
+//Set initial time for timer
 var time = 75;
 
-
+//Function to start and run timer
 function startTimer(){
+    //Targets timer 
     var initialtime = document.getElementById('time');
     //Inits Timer
     var timer = setInterval(function () {
-
         initialtime.innerText = time;
         time--;
-        //If the times reach 0 or there are no more questions the timer stops || (questions.length=currentQuestionIndex))
+        //If the times reach 0 the timer will stop
         if (time < 0) {
-
-            //assign time to points before clear    
+            //Assign time to points before clear    
             StopTimer();
-
         }
-
     }, 1000);
-
-
-
 }
 
-
+//Function to set a penalty for a wrong answer. The timer will be decremented  15 second
 function penaltyIncorrectAnswer(){
-    
     time= time-15;
-
 }
 
 
-//Stops timer
+//Function to stops timer and show scores
 function StopTimer(){ 
     clearTimeout(1);
     showScores();
@@ -55,22 +47,13 @@ startButton.addEventListener('click', function (event) {
     var htmlQuestion = document.getElementById('questions');
     htmlQuestion.classList.remove('hide');
 
-
-    
-    var timer= startTimer();
-
+    //Calls functions to start Timer and Quiz
+    startTimer();
+    //Delays the call to give time to the timer to start with correct initial value
     setTimeout(function () {runQuiz();} , 1000);
-
-    //Calls functions to start Quiz
-  
     
 
 });
-
-
-
-
-
 
 
 
