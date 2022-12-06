@@ -3,6 +3,19 @@ var currentQuestionIndex = 0;
 //Set initial time for timer
 var time = 75;
 
+    //Array of objects to store scores data
+    var highscores = [{
+        initials:'',
+        finalScore: 0,
+        }];
+
+    var score ={
+        initials:'',
+        finalScore: 0,
+    }    
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+
+
 //Function to start and run timer
 function startTimer(){
     //Targets timer 
@@ -162,30 +175,28 @@ function showScores(){
     finalScoreDiv.innerText = finalTime.innerText;
     }
 
+    //Targets the submit button
+    var submitButton = document.getElementById('submit');
 
 
- //Targets the submit button
- var submitButton = document.getElementById('submit');
 
- //Object to store scores data
- var scores ={
-     initials:'',
-     finalScore: 0,
-};
+    //Add listener for the submit button
 
+    submitButton.addEventListener('click', function (event) {
 
- //Add listener for the submit button
+    var highscoresLocal = JSON.parse(localStorage.getItem('highscores'));
 
-submitButton.addEventListener('click', function (event) {
-
-  //Gets and store initials and final score from input
-   scores.initials = document.getElementById('initials').value;
-    scores.finalScore = document.getElementById('final-score').innerText;
-   
-    //convert object into a JSON string and store in local storage
-    localStorage.setItem('score', JSON.stringify(scores));
     
-    //Navigates to highscores.html page 
-    window.location.href = "highscores.html";
+    //Gets and store initials and final score from input
+    score.initials = document.getElementById('initials').value;
+    score.finalScore = document.getElementById('final-score').innerText;
+    //
+    highscoresLocal.push(score);
+
+        //convert object into a JSON string and store in local storage
+        localStorage.setItem('highscores', JSON.stringify(highscores));
+        
+        //Navigates to highscores.html page 
+        window.location.href = "highscores.html";
 
  });
