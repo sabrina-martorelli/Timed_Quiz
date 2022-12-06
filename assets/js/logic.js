@@ -72,7 +72,7 @@ startButton.addEventListener('click', function (event) {
 });
 
 
-//Function to show questions of the quiz and stop it when there is no more questions or the time is over
+//Function to run quiz and stop it when there is no more questions or the time is over
 function runQuiz() {
 
     //Targets the timer to check the current time
@@ -80,7 +80,7 @@ function runQuiz() {
 
     //If there are question to show or the time is not over, shows the next question
     if ((currentQuestionIndex < questions.length) && (currentTime.innerText > 0)) {
-        showQuestions();
+        showQuestion();
     }
     else {
         
@@ -91,8 +91,8 @@ function runQuiz() {
 }
 
 
-
-function showQuestions() {
+//Function to show a question with all the options
+function showQuestion() {
 
     var questionTitle = document.getElementById('question-title');
     var choices = document.getElementById('choices');
