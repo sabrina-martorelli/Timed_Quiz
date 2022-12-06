@@ -16,39 +16,6 @@ var score = {
 }
 
 
-//Function to start and run timer
-function startTimer() {
-    //Targets timer 
-    var clock = document.getElementById('time');
-    //Inits Timer
-    var timer = setInterval(function () {
-
-        if (time > -1) {
-            clock.innerText = time;
-            time--;
-        }
-        else {
-            //If the times reach 0 the timer will stop
-            stopTimer();   
-        }
-
-    }, 1000);
-}
-
-//Function to set a penalty for a wrong answer. The timer will be decremented 20 second
-function penaltyIncorrectAnswer() {
-    time = time - 20;
-}
-
-
-//Function to stops timer and show scores
-function stopTimer() {
-    clearTimeout(1);
-    showScores();
-}
-
-
-
 //Targets the start button
 var startButton = document.getElementById('start');
 
@@ -72,6 +39,36 @@ startButton.addEventListener('click', function (event) {
 });
 
 
+//Function to start and run timer
+function startTimer() {
+    //Targets timer 
+    var clock = document.getElementById('time');
+    //Inits Timer
+    var timer = setInterval(function () {
+
+        if (time > -1) {
+            clock.innerText = time;
+            time--;
+        }
+        else {
+            //If the times reach 0 the timer will stop
+            finishQuiz();
+        }
+
+    }, 1000);
+}
+
+//Function to set a penalty for a wrong answer. The timer will be decremented 20 second
+function penaltyIncorrectAnswer() {
+    time = time - 20;
+}
+
+//Function to stops timer and show final score
+function finishQuiz() {
+    clearTimeout(1);
+    showScores();
+}
+
 //Function to run quiz and stop it when there is no more questions or the time is over
 function runQuiz() {
 
@@ -83,10 +80,10 @@ function runQuiz() {
         showQuestion();
     }
     else {
-        
-        //Stop the timer
-        stopTimer();
-      
+
+        //Call to stop the timer and sho final score
+        finishQuiz();
+
     }
 }
 
@@ -99,13 +96,13 @@ function showQuestion() {
 
     //Targets the div choices to appends question choices  
     var choices = document.getElementById('choices');
-    
+
     //Clears the previous question on screen
     choices.innerHTML = '';
-    
+
     //Gets one question from array 
     var currentQuestion = questions[currentQuestionIndex];
-   
+
     //Gets choices of current question
     var currentChoices = currentQuestion.choices;
 
@@ -114,7 +111,7 @@ function showQuestion() {
 
     //Create the choices for the current question
     for (var i = 0; i < currentChoices.length; i++) {
-       
+
         var choiceText = currentChoices[i];
         //Creates a button for each choice
         var button = document.createElement('button');
@@ -162,13 +159,13 @@ function checkAnswer(event) {
 }
 
 
- //Function to show feedback on screen 
+//Function to show feedback on screen 
 function showFeedback(answerText) {
 
     //Targets the feedback div and removes the hide class
     var feedbackDiv = document.getElementById('feedback');
     feedbackDiv.classList.remove('hide');
-   
+
     //Shows feedback on screen
     feedbackDiv.innerText = answerText;
     //Show the feedback only for some time on screen
