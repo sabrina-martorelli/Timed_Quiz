@@ -55,11 +55,11 @@ var startButton = document.getElementById('start');
 //Add listener to start button
 startButton.addEventListener('click', function (event) {
 
-    //Targets the start-screen div and set class attribute to hide
+    //Targets the start-screen div and adds class hide
     var startScreen = document.getElementById('start-screen');
     startScreen.classList.add('class', 'hide');
 
-    //Targets the questions div and removes hide attribute
+    //Targets the questions div and removes hide class
     var htmlQuestion = document.getElementById('questions');
     htmlQuestion.classList.remove('hide');
 
@@ -94,72 +94,84 @@ function runQuiz() {
 //Function to show a question with all the options
 function showQuestion() {
 
+    //Targets the element h1 that contains the question title
     var questionTitle = document.getElementById('question-title');
+
+    //Targets the div choices to appends question choices  
     var choices = document.getElementById('choices');
+    
+    //Clears the previous question on screen
+    choices.innerHTML = '';
+    
+    //Gets one question from array 
     var currentQuestion = questions[currentQuestionIndex];
+   
+    //Gets choices of current question
     var currentChoices = currentQuestion.choices;
 
-    //Clears the previous questions
-    choices.innerHTML = '';
-    //Set the title to the current question title
+    //Set the title on screen with the current question title
     questionTitle.innerText = currentQuestion.title
+
     //Create the choices for the current question
     for (var i = 0; i < currentChoices.length; i++) {
+       
         var choiceText = currentChoices[i];
-        //Button creation for each choice
+        //Creates a button for each choice
         var button = document.createElement('button');
         button.innerText = choiceText;
         button.value = choiceText;
+        //Append each child button to the div choices
         choices.appendChild(button);
     }
 
+    //Adds a listener for each choice using event delegation.
+    //When a choices button is click the function is called
     choices.addEventListener('click', checkAnswer);
-
-
-
 
 
 }
 
 
-
-
-
+//Function to compare the target value with the correct answer for the question
 function checkAnswer(event) {
 
-    var currentQuestion = questions[currentQuestionIndex];
+    //Gets the correct answer for the current question
+    var rightQuestion = questions[currentQuestionIndex].answer;
 
-    if (event.target.value == currentQuestion.answer) {
+    if (event.target.value == rightQuestion) {
 
-        //Targets the feedback div and removes hide attribute
+        //Call the function for correct answer
         showFeedback('Correct');
 
     }
     else {
-        //If the answer clicked was incorrect then 15 seconds  are subtracted from the clock
+        //If the answer clicked was incorrect then 20 seconds  are subtracted from the clock
         penaltyIncorrectAnswer()
+        //Call the function for Incorrect answer
         showFeedback('Incorrect');
 
     };
 
+    //Increments the variable to get the next question
     currentQuestionIndex++;
-    //Delays the call of the function to show feedback properly
+
+    //Delays the call of the function that will show the next question to show feedback properly
     setTimeout(function () { runQuiz(); }, 500);
 
 
 }
 
 
-
-
-
-
+ //Function to show feedback on screen 
 function showFeedback(answerText) {
+
+    //Targets the feedback div and removes the hide class
     var feedbackDiv = document.getElementById('feedback');
     feedbackDiv.classList.remove('hide');
+   
+    //Shows feedback on screen
     feedbackDiv.innerText = answerText;
-
-
+    //Show the feedback only for some time on screen
     setTimeout(function () { feedbackDiv.classList.add('hide'); }, 500);
 
 }
@@ -187,9 +199,6 @@ function showScores() {
         finalScoreDiv.innerText = finalTime.innerText;
     }
 }
-
-
-
 
 
 //Targets the submit button
