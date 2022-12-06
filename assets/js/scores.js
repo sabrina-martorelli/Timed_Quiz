@@ -18,9 +18,6 @@
 
   }
 
-
-  //
-
 //Targets the Clear Highscore button
 var clearButton = document.getElementById('clear');
 

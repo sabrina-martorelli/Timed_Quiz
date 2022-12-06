@@ -34,7 +34,7 @@ startButton.addEventListener('click', function (event) {
     startTimer();
     //Delays the call to give time to the timer to start with correct initial value
     setTimeout(function () { runQuiz(); }, 1000);
-
+    
 
 });
 
@@ -60,7 +60,7 @@ function startTimer() {
 
 //Function to set a penalty for a wrong answer. The timer will be decremented 20 second
 function penaltyIncorrectAnswer() {
-    time = time - 20;
+    time = time - 10;
 }
 
 //Function to stops timer and show final score
@@ -168,6 +168,7 @@ function showFeedback(answerText) {
 
     //Shows feedback on screen
     feedbackDiv.innerText = answerText;
+
     //Show the feedback only for some time on screen
     setTimeout(function () { feedbackDiv.classList.add('hide'); }, 500);
 
@@ -201,7 +202,7 @@ function showScores() {
 //Targets the submit button
 var submitButton = document.getElementById('submit');
 
-//Add listener for the submit button
+//Add listener to the submit button
 submitButton.addEventListener('click', function (event) {
 
     //Gets and store initials and final score from input
@@ -213,6 +214,7 @@ submitButton.addEventListener('click', function (event) {
 
     //If there are highscores on local storage, adds one more
     if (existingHighscores) {
+
         //Sets new object to be push
         score.initials = initials;
         score.finalScore = finalScore;
@@ -223,7 +225,8 @@ submitButton.addEventListener('click', function (event) {
         localStorage.setItem('highscores', JSON.stringify(existingHighscores));
 
     }
-    else { //If there is no highscores on local storage, adds the first one
+    else { 
+        //If there is no highscores on local storage, adds the first one
         //Sets new array and object
         highscores[0].initials = initials;
         highscores[0].finalScore = finalScore;
