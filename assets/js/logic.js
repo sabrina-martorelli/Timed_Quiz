@@ -1,7 +1,7 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
 //Set initial time for timer
-var time = 56;
+var time = 75;
 
 //Definition of array of objects to store scores data
 var highscores = [{
@@ -29,7 +29,7 @@ function startTimer() {
         }
         else {
             //If the times reach 0 the timer will stop
-            StopTimer();   
+            stopTimer();   
         }
 
     }, 1000);
@@ -42,7 +42,7 @@ function penaltyIncorrectAnswer() {
 
 
 //Function to stops timer and show scores
-function StopTimer() {
+function stopTimer() {
     clearTimeout(1);
     showScores();
 }
@@ -85,7 +85,7 @@ function runQuiz() {
     else {
         
         //Stop the timer
-        StopTimer();
+        stopTimer();
       
     }
 }
