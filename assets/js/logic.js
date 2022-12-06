@@ -32,9 +32,9 @@ function startTimer(){
     }, 1000);
 }
 
-//Function to set a penalty for a wrong answer. The timer will be decremented  15 second
+//Function to set a penalty for a wrong answer. The timer will be decremented 20 second
 function penaltyIncorrectAnswer(){
-    time= time-15;
+    time= time-20;
 }
 
 
