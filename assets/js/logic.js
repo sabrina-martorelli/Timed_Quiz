@@ -170,13 +170,13 @@ function showScores(){
     var submitButton = document.getElementById('submit');
 
 
-       //Array of objects to store scores data
+    //Definition of array of objects to store scores data
        var highscores = [{
         initials:'',
         finalScore: 0,
         }];
 
-        //Object to store scores data
+    //Definition object to store scores data
        var score ={
         initials:'',
         finalScore: 0,
@@ -185,31 +185,38 @@ function showScores(){
 
 
     //Add listener for the submit button
-
     submitButton.addEventListener('click', function (event) {
 
-   //Gets and store initials and final score from input
-   highscores[0].initials = document.getElementById('initials').value;
-   highscores[0].finalScore = document.getElementById('final-score').innerText;
-
-   score.initials = document.getElementById('initials').value;
-   score.finalScore = document.getElementById('final-score').innerText;
-
+    //Gets and store initials and final score from input
+    var initials=document.getElementById('initials').value;
+    var finalScore= document.getElementById('final-score').innerText;
+   
+    //Gets previous highscores from Local Storage if any
     var existingHighscores = JSON.parse(localStorage.getItem('highscores'));
     
-    console.log(existingHighscores);
-
+    //If there are highscores on local storage, adds one more
     if(existingHighscores){
+        //Sets new object to be push
+        score.initials = initials;
+        score.finalScore = finalScore;
+        //Adds new score to Array of highscores
+        existingHighscores.push(score);   
 
-    existingHighscores.push(score);
-    console.log(existingHighscores);
+         //Convert object into a JSON string and store in local storage
+        localStorage.setItem('highscores', JSON.stringify(existingHighscores));
 
     }
-    else{
-     //if is the first score to be saved on Local store
-     //convert object into a JSON string and store in local storage
+    else{ //If there is no highscores on local storage, adds the first one
+     //Sets new array and object
+     highscores[0].initials = initials;
+     highscores[0].finalScore = finalScore;
+
+    //Convert object into a JSON string and store in local storage
     localStorage.setItem('highscores', JSON.stringify(highscores));
 
     }
+        
+    //Automatically navigates to highscores.html page 
+    window.location.href = "highscores.html";
 
  });
