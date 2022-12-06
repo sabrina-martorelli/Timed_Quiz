@@ -1,7 +1,7 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
 //Set initial time for timer
-var time = 5;
+var time = 56;
 
 //Definition of array of objects to store scores data
 var highscores = [{
@@ -29,8 +29,7 @@ function startTimer() {
         }
         else {
             //If the times reach 0 the timer will stop
-            StopTimer();
-           
+            StopTimer();   
         }
 
     }, 1000);
@@ -87,8 +86,7 @@ function runQuiz() {
         
         //Stop the timer
         StopTimer();
-        //If the quiz is finish the Scores (end-screen) div is show 
-        showScores();
+      
     }
 }
 
