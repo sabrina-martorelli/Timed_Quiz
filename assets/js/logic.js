@@ -1,6 +1,6 @@
 //Variable to store current question index
 var currentQuestionIndex = 0;
-//Set initial time for timer
+// Initial time for timer 
 var time = 75;
 
 //Definition of array of objects to store scores data
@@ -122,7 +122,6 @@ function showQuestion() {
     }
 
     //Adds a listener for each choice using event delegation.
-    //When a choices button is click the function is called
     choices.addEventListener('click', checkAnswer);
 
 
@@ -142,8 +141,8 @@ function checkAnswer(event) {
 
     }
     else {
-        //If the answer clicked was incorrect then 20 seconds  are subtracted from the clock
-        penaltyIncorrectAnswer()
+        //If the answer clicked was incorrect then 10 seconds are subtracted from the clock
+        penaltyIncorrectAnswer();
         //Call the function for Incorrect answer
         showFeedback('Incorrect');
 
@@ -153,7 +152,7 @@ function checkAnswer(event) {
     currentQuestionIndex++;
 
     //Delays the call of the function that will show the next question to show feedback properly
-    setTimeout(function () { runQuiz(); }, 500);
+    setTimeout(function () { runQuiz(); }, 1000);
 
 
 }
