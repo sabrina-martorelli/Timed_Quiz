@@ -26,6 +26,13 @@ var questions = [
     },
 
     {
+    
+        title: 'How does a FOR loop start?',
+        choices: ['for (i = 0; i <= 5; i++)','for i = 1 to 5', 'for (i = 0; i <= 5)','for (i <= 5; i++)'],
+        answer: 'for (i = 0; i <= 5; i++)',
+    },
+
+    {
        
         title: 'Which event occurs when the user clicks on an HTML element?',
         choices: ['onmouseover', 'onchange', 'onclick','onmouseclick'],

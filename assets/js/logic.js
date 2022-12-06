@@ -30,10 +30,14 @@ startButton.addEventListener('click', function (event) {
     var htmlQuestion = document.getElementById('questions');
     htmlQuestion.classList.remove('hide');
 
+ 
+
     //Calls functions to start Timer and Quiz
     startTimer();
+
     //Delays the call to give time to the timer to start with correct initial value
     setTimeout(function () { runQuiz(); }, 1000);
+    
     
 
 });
@@ -81,7 +85,7 @@ function runQuiz() {
     }
     else {
 
-        //Call to stop the timer and sho final score
+        //Call to stop the timer and show final score
         finishQuiz();
 
     }
