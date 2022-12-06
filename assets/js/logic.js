@@ -3,7 +3,17 @@ var currentQuestionIndex = 0;
 //Set initial time for timer
 var time = 75;
 
+    //Definition of array of objects to store scores data
+    var highscores = [{
+        initials:'',
+        finalScore: 0,
+        }];
 
+    //Definition object to store scores data
+       var score ={
+        initials:'',
+        finalScore: 0,
+       }    
 
 
 
@@ -170,17 +180,7 @@ function showScores(){
     var submitButton = document.getElementById('submit');
 
 
-    //Definition of array of objects to store scores data
-       var highscores = [{
-        initials:'',
-        finalScore: 0,
-        }];
 
-    //Definition object to store scores data
-       var score ={
-        initials:'',
-        finalScore: 0,
-       }    
 
 
 
