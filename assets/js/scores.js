@@ -5,11 +5,17 @@
  //Gets previous highscores from Local Storage 
  var existingHighscores = JSON.parse(localStorage.getItem('highscores'));
 
- for  (score in existingHighscores) {
+ //Sort array of objects to get high scores first
+ existingHighscores.sort((a,b) => b.finalScore - a.finalScore);
 
+ //Loops the array of highscores
+ for  (score in existingHighscores) {
+  
+  //Creates an li element for each highscore
   var li = document.createElement('li');
-  li.innerText=  `${score.initials} - ${score.finalScore}`;
-  ol.append(li)
+  li.innerText=  `${existingHighscores[score].initials} - ${existingHighscores[score].finalScore}`;
+  ol.append(li);
 
  }
-    
+
+
