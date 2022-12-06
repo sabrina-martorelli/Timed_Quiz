@@ -1,6 +1,15 @@
 
+//Targets the ol to append one new child per highscores to be shown
+ var ol = document.getElementById('highscores');
 
-//parse convert back to javascript object
-var scores = JSON.parse(localStorage.getItem('scores'));
+ //Gets previous highscores from Local Storage 
+ var existingHighscores = JSON.parse(localStorage.getItem('highscores'));
 
-console.log(scores);
+ for  (score in existingHighscores) {
+
+  var li = document.createElement('li');
+  li.innerText=  `${score.initials} - ${score.finalScore}`;
+  ol.append(li)
+
+ }
+    
